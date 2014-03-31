@@ -2,9 +2,10 @@
   "name": "core-icon",
   "private": true,
   "dependencies": {
-    "polymer": "Polymer/polymer#master",
-    "core-theme-aware": "Polymer/core-theme-aware#master",
-    "core-iconset": "Polymer/core-iconset#master",
-    "core-action-icons": "Polymer/core-action-icons#master"
-  }
+    "polymer": "Polymer/polymer#0.2.2",
+    "core-theme-aware": "Polymer/core-theme-aware#0.2.2",
+    "core-iconset": "Polymer/core-iconset#0.2.2",
+    "core-action-icons": "Polymer/core-action-icons#0.2.2"
+  },
+  "version": "0.2.2"
 }
