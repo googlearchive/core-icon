@@ -63,7 +63,7 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
      *
      * @attribute size
      * @type string
-     * @default 24
+     * @default null
      */
     size: null,
 
@@ -84,11 +84,17 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
 
     defaultIconset: 'icons',
 
-    ready: function() {
+    attached: function() {
       if (!meta) {
         meta = document.createElement('core-iconset');
       }
-      this.updateIcon();
+      if (!this.size) {
+        var style = getComputedStyle(this, null).getPropertyValue('font-size');
+        this.style.width = this.style.height = style;
+        this.size = parseFloat(style);
+      } else {
+        this.updateIcon();
+      }
     },
 
     srcChanged: function() {
@@ -102,10 +108,6 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
     },
 
     updateIcon: function() {
-      if (!this.size) {
-        var style = window.getComputedStyle(this, null).getPropertyValue('font-size');
-        this.size = parseFloat(style); 
-      }
       this.style.width = this.style.height = this.size + 'px';
       if (this.icon) {
         var parts = String(this.icon).split(':');
