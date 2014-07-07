@@ -65,7 +65,7 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
      * @type string
      * @default 24
      */
-    size: 24,
+    size: null,
 
     /**
      * Specifies the icon name or index in the set of icons available in
@@ -102,9 +102,11 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
     },
 
     updateIcon: function() {
-      if (this.size) {
-        this.style.width = this.style.height = this.size + 'px';
+      if (!this.size) {
+        var style = window.getComputedStyle(this, null).getPropertyValue('font-size');
+        this.size = parseFloat(style); 
       }
+      this.style.width = this.style.height = this.size + 'px';
       if (this.icon) {
         var parts = String(this.icon).split(':');
         var icon = parts.pop();
