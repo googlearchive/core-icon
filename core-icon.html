@@ -63,9 +63,9 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
      *
      * @attribute size
      * @type string
-     * @default 24
+     * @default null
      */
-    size: 24,
+    size: null,
 
     /**
      * Specifies the icon name or index in the set of icons available in
@@ -84,11 +84,17 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
 
     defaultIconset: 'icons',
 
-    ready: function() {
+    attached: function() {
       if (!meta) {
         meta = document.createElement('core-iconset');
       }
-      this.updateIcon();
+      if (!this.size) {
+        var style = getComputedStyle(this, null).getPropertyValue('font-size');
+        this.style.width = this.style.height = style;
+        this.size = parseFloat(style);
+      } else {
+        this.updateIcon();
+      }
     },
 
     srcChanged: function() {
@@ -102,9 +108,7 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     },
 
     updateIcon: function() {
-      if (this.size) {
-        this.style.width = this.style.height = this.size + 'px';
-      }
+      this.style.width = this.style.height = this.size + 'px';
       if (this.icon) {
         var parts = String(this.icon).split(':');
         var icon = parts.pop();
