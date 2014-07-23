@@ -87,6 +87,12 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
         meta = document.createElement('core-iconset');
       }
       this.updateIcon();
+
+      if (this.getAttribute('aria-label') !== '') {
+        return;
+      }
+
+      this.setAttribute('aria-label', this.alt || this.icon);
     },
 
     srcChanged: function() {
