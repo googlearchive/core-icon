@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="core-icon.html">
 
   <style>
-    segment {
+    .box {
       display: block;
       position: relative;
       -webkit-box-sizing: border-box;
@@ -41,7 +41,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <template is="auto-binding">
   <div wrap horizontal layout>
     <template repeat="{{icon in $.meta.metaData.icons.iconNames}}">
-      <segment><core-icon icon="{{icon}}"></core-icon> {{icon}}</segment>
+      <div class="box">
+        <core-icon icon="{{icon}}"></core-icon> {{icon}}
+      </div>
     </template>
   </div>
   <core-iconset id="meta"></core-iconset>
