@@ -88,10 +88,17 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
   Polymer({
     is: 'core-icon',
 
-    published: {
-      src: String,
+    properties: {
+      src: {
+        type: String,
+        observer: 'srcChanged'
+      },
       icon: String,
       theme: String
+    },
+
+    observers: {
+        'icon theme': 'iconChanged'
     },
 
     configure: function () {
@@ -108,12 +115,6 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
         meta: meta,
         srcImgElement: null
       };
-    },
-
-    bind: {
-      icon: 'iconChanged',
-      theme: 'iconChanged',
-      src: 'srcChanged'
     },
 
     computed: {
