@@ -167,7 +167,11 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
         }
 
         this.iconset = this.computeIconset(this.icon);
-        this.iconsetElement.applyIcon(this.root, this.iconName, this.theme);
+        if (this.iconsetElement) {
+          this.iconsetElement.applyIcon(this.root, this.iconName, this.theme);
+        } else {
+          console.warn('iconset "' + this.iconset + '" not found!');
+        }
       },
 
       srcChanged: function () {

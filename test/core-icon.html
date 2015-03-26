@@ -68,6 +68,11 @@ suite('<core-icon>', function () {
 
       expect(iconElementFor(icon).src).to.match(/foo\.png/);
     });
+
+    test('gracefully fails if the iconset is bad', function () {
+      icon.icon = 'foo:bar';
+      // should not get exception
+    });
   });
 
   suite('when paired with an iconset', function () {
