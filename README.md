@@ -1,4 +1,4 @@
 core-icon
 =========
 
-See the [component page](http://polymer-project.org/docs/elements/core-elements.html#core-icon) for more information.
+See the [component page](https://www.polymer-project.org/0.5/docs/elements/core-icon.html) for more information.
