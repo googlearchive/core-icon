@@ -136,8 +136,12 @@ See [core-icons](https://www.polymer-project.org/0.5/components/core-icons/demo.
       this._icon = icon;
     },
 
+    resolveIconsetName_: function(name) {
+      return name || this.defaultIconset;
+    },
+
     getIconset: function(name) {
-      return meta.byId(name || this.defaultIconset);
+      return meta.byId(this.resolveIconsetName_(name));
     },
 
     updateIcon: function(oldVal, newVal) {
@@ -148,12 +152,21 @@ See [core-icons](https://www.polymer-project.org/0.5/components/core-icons/demo.
       var parts = String(this.icon).split(':');
       var icon = parts.pop();
       if (icon) {
-        var set = this.getIconset(parts.pop());
+        var iconSetName = parts.pop();
+        var set = this.getIconset(iconSetName);
         if (set) {
           this._icon = set.applyIcon(this, icon);
           if (this._icon) {
             this._icon.setAttribute('fit', '');
+          } else {
+              console.warn('"' + this.resolveIconsetName_(iconSetName) + ':' + icon + '"' +
+                            " icon not found. " +
+                            "Ensure you have imported the icon-set that includes this icon. i.e. core-icons.html")
           }
+        } else {
+            console.warn('"' + iconSetName + '"' +
+                         " iconset not found. " +
+                         "Ensure you have imported this icon-set.")
         }
       }
       // Check to see if we're using the old icon's name for our a11y fallback
